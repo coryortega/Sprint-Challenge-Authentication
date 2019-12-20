@@ -18,20 +18,5 @@ describe("server.js", function() {
                 expect(res.type).toMatch("text/html")
             })
         });
-        it("authorization works", function(){ //notice the skip keyword, since this is an example
-            return request(server)
-            .post('/login')
-            .send({ username: 'Yardel', password: 'pass' })
-            .then(res => {
-                const token = res.body.token;
-                return request(server)
-                .get('/')
-                .set('authorization', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc2ODYwODM3LCJleHAiOjE1NzY4NjQ0Mzd9.Oozg_RfQSDKPdWaHIAGNfcM3PveIzlFzqvHqdNv__0s")
-                .then(res => {
-                    expect(res.type).toMatch("text/html")
-                });
-            })
-
-        });
     });
 });
