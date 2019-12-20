@@ -30,14 +30,15 @@ describe("server.js", function() {
 
     });
 
-    it("authorization works", async function(){
-        await Users.add({ username: 'Yardel', password: 'pass' });
+    it("authorization works", function(){
+        Users.add({ username: 'Yardel', password: 'pass' })
+        .then( res => {
         return request(server)
         .post('/login')
         .send({ username: 'Yardel', password: 'pass' })
         .then(res => {
             expect(res.status).toBe(200)
-        })
+        })})
 
     });
     it('should return a 404', function () {
